@@ -1,0 +1,408 @@
+<?php
+/**
+ * Implements hook_theme().
+ */
+function gmu_fa_request_info_theme($existing, $type, $theme, $path) {
+  if($type == 'module') {
+    return array(
+      'gmu_fa_request_info_block' => array(
+        'template' => 'gmu-fa-request-info-block',
+        'path' => "$path/theme",
+      ),
+      'gmu_fa_undergraduate_block' => array(
+        'template' => 'gmu-fa-undergraduate-block',
+        'path' => "$path/theme",
+      ),
+      'gmu_fa_short_inq_block' => array(
+        'template' => 'gmu-fa-short-inq-block',
+        'path' => "$path/theme",
+      ),
+      'gmu_fa_development_block' => array(
+        'template' => 'gmu-fa-development-block',
+        'path' => "$path/theme",
+      ),
+      'gmu_fa_msot_block' => array(
+        'template' => 'gmu-fa-msot-block',
+        'path' => "$path/theme",
+      ),
+      'gmu_fa_hybrid_block' => array(
+        'template' => 'gmu-fa-hybrid-block',
+        'path' => "$path/theme",
+      ),
+      'gmu_fa_mbaapp_block' => array(
+        'template' => 'gmu-fa-mbaapp-block',
+        'path' => "$path/theme",
+      ),
+      'gmu_fa_mph_block' => array(
+        'template' => 'gmu-fa-mph-block',
+        'path' => "$path/theme",
+      ),
+      'gmu_fa_mph_page_block' => array(
+        'template' => 'gmu-fa-mph-page-block',
+        'path' => "$path/theme",
+      ),
+    );
+  }
+  else {
+    return array();
+  }
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function gmu_fa_request_info_block_info() {
+  $blocks = array();
+
+  $blocks['gmu_fa_request_info_block'] = array(
+    'info' => t('GMU Request Information'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  $blocks['gmu_fa_undergraduate_block'] = array(
+    'info' => t('GMU Undergraduate Form'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  $blocks['gmu_fa_short_inq_block'] = array(
+    'info' => t('GMU Short Inqury Form'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  $blocks['gmu_fa_development_block'] = array(
+    'info' => t('GMU Development Form'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  $blocks['gmu_fa_msot_block'] = array(
+    'info' => t('GMU FA MSOT Form'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  $blocks['gmu_fa_hybrid_block'] = array(
+    'info' => t('GMU FA Hybrid Form'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  $blocks['gmu_fa_mbaapp_block'] = array(
+    'info' => t('GMU FA MBA Application Form'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  $blocks['gmu_fa_mph_block'] = array(
+    'info' => t('GMU FA MPH Application Form'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  $blocks['gmu_fa_mph_page_block'] = array(
+    'info' => t('GMU FA MPH Page Form'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_configure().
+ */
+function gmu_fa_request_info_block_configure($delta = ''){
+  $form = array();
+  switch($delta){
+      case 'gmu_fa_request_info_block':
+          $form['fa_id'] = array(
+              '#title' => 'Form ID',
+              '#type'  => 'textfield',
+              '#default_value' => variable_get('fa_id',''),
+              '#description' => 'Enter ID of Form Assembly'
+          );
+          break;
+      case 'gmu_fa_undergraduate_block':
+          $form['fa_ug_id'] = array(
+              '#title' => 'Form ID',
+              '#type'  => 'textfield',
+              '#default_value' => variable_get('fa_ug_id',''),
+              '#description' => 'Enter ID of Form Assembly'
+          );
+          break;
+      case 'gmu_fa_short_inq_block':
+          $form['fa_sh_id'] = array(
+              '#title' => 'Form ID',
+              '#type'  => 'textfield',
+              '#default_value' => variable_get('fa_sh_id',''),
+              '#description' => 'Enter ID of Form Assembly'
+          );
+          break;
+      case 'gmu_fa_development_block':
+          $form['fa_develop_id'] = array(
+              '#title' => 'Form ID',
+              '#type'  => 'textfield',
+              '#default_value' => variable_get('fa_develop_id',''),
+              '#description' => 'Enter ID of Form Assembly'
+          );
+          break;
+      case 'gmu_fa_msot_block':
+          $form['fa_msot_id'] = array(
+              '#title' => 'Form ID',
+              '#type'  => 'textfield',
+              '#default_value' => variable_get('fa_msot_id',''),
+              '#description' => 'Enter ID of Form Assembly'
+          );
+          break;
+      case 'gmu_fa_hybrid_block':
+          $form['fa_hybrid_id'] = array(
+              '#title' => 'Form ID',
+              '#type'  => 'textfield',
+              '#default_value' => variable_get('fa_hybrid_id',''),
+              '#description' => 'Enter ID of Form Assembly'
+          );
+          break;
+      case 'gmu_fa_mbaapp_block':
+        $form['fa_mbaapp_id'] = array(
+            '#title' => 'Form ID',
+            '#type'  => 'textfield',
+            '#default_value' => variable_get('fa_mph_id',''),
+            '#description' => 'Enter ID of Form Assembly'
+        );
+        break;
+      case 'gmu_fa_mph_block':
+        $form['fa_mph_id'] = array(
+            '#title' => 'Form ID',
+            '#type'  => 'textfield',
+            '#default_value' => variable_get('fa_mph_id',''),
+            '#description' => 'Enter ID of Form Assembly'
+        );
+        break;
+      case 'gmu_fa_mph_page_block':
+        $form['fa_mph_page_id'] = array(
+            '#title' => 'Form ID',
+            '#type'  => 'textfield',
+            '#default_value' => variable_get('fa_mph_page_id',''),
+            '#description' => 'Enter ID of Form Assembly'
+        );
+        break;
+  }
+  return $form;
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function gmu_fa_request_info_block_save($delta = '', $edit = array()){
+  switch($delta){
+      case 'gmu_fa_request_info_block':
+          variable_set('fa_id',$edit['fa_id']);
+          break;
+      case 'gmu_fa_undergraduate_block':
+          variable_set('fa_ug_id',$edit['fa_ug_id']);
+          break;
+      case 'gmu_fa_short_inq_block':
+          variable_set('fa_sh_id',$edit['fa_sh_id']);
+          break;
+      case 'gmu_fa_development_block':
+          variable_set('fa_develop_id',$edit['fa_develop_id']);
+          break;
+      case 'gmu_fa_msot_block':
+        variable_set('fa_msot_id',$edit['fa_msot_id']);
+          break;
+      case 'gmu_fa_hybrid_block':
+        variable_set('fa_hybrid_id',$edit['fa_hybrid_id']);
+          break;
+      case 'gmu_fa_mbaapp_block':
+        variable_set('fa_mbaapp_id',$edit['fa_mbaapp_id']);
+          break;
+      case 'gmu_fa_mph_block':
+        variable_set('fa_mph_id',$edit['fa_mph_id']);
+          break;
+      case 'gmu_fa_mph_page_block':
+        variable_set('fa_mph_page_id',$edit['fa_mph_page_id']);
+          break;
+  }
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function gmu_fa_request_info_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'gmu_fa_request_info_block':
+
+      $block['subject'] = '';
+      $block['content'] = gmu_fa_request_info_block_content();
+      break;
+
+    case 'gmu_fa_undergraduate_block':
+
+      $path = drupal_get_path('module', 'gmu_fa_request_info');
+      drupal_add_js($path . '/js/gmu-fa.js');
+
+      $block['subject'] = '';
+      $block['content'] = gmu_fa_undergraduate_block_content();
+      break;
+
+    case 'gmu_fa_short_inq_block':
+
+      $path = drupal_get_path('module', 'gmu_fa_request_info');
+      drupal_add_js($path . '/js/gmu-fa.js');
+
+      $block['subject'] = '';
+      $block['content'] = gmu_fa_short_inq_block_content();
+      break;
+
+    case 'gmu_fa_development_block':
+
+      $path = drupal_get_path('module', 'gmu_fa_request_info');
+      drupal_add_js($path . '/js/gmu-fa.js');
+
+      $block['subject'] = '';
+      $block['content'] = gmu_fa_development_block_content();
+      break;
+
+    case 'gmu_fa_msot_block':
+
+      $path = drupal_get_path('module', 'gmu_fa_request_info');
+      drupal_add_js($path . '/js/gmu-fa.js');
+
+      $block['subject'] = '';
+      $block['content'] = gmu_fa_msot_block_content();
+      break;
+
+    case 'gmu_fa_hybrid_block':
+
+      $path = drupal_get_path('module', 'gmu_fa_request_info');
+      drupal_add_js($path . '/js/gmu-fa.js');
+
+      $block['subject'] = '';
+      $block['content'] = gmu_fa_hybrid_block_content();
+      break;
+
+    case 'gmu_fa_mbaapp_block':
+
+        $path = drupal_get_path('module', 'gmu_fa_request_info');
+        drupal_add_js($path . '/js/gmu-fa.js');
+  
+        $block['subject'] = '';
+        $block['content'] = gmu_fa_mbaapp_block_content();
+        break;
+
+    case 'gmu_fa_mph_block':
+
+        $path = drupal_get_path('module', 'gmu_fa_request_info');
+        drupal_add_js($path . '/js/gmu-fa.js');
+  
+        $block['subject'] = '';
+        $block['content'] = gmu_fa_mph_block_content();
+        break;
+
+    case 'gmu_fa_mph_page_block':
+
+        $path = drupal_get_path('module', 'gmu_fa_request_info');
+        drupal_add_js($path . '/js/gmu-fa.js');
+  
+        $block['subject'] = '';
+        $block['content'] = gmu_fa_mph_page_block_content();
+        break;
+  }
+
+  return $block;
+}
+
+function gmu_fa_request_info_block_content() {
+  $fa_id = variable_get('fa_id');
+
+  $vars = array(
+    'fa_id' => $fa_id,
+  );
+  $content = theme('gmu_fa_request_info_block', $vars);
+
+  return $content;
+}
+
+function gmu_fa_undergraduate_block_content() {
+  $fa_ug_id = variable_get('fa_ug_id');
+
+  $vars = array(
+    'fa_ug_id' => $fa_ug_id,
+  );
+  $content = theme('gmu_fa_undergraduate_block', $vars);
+
+  return $content;
+}
+
+function gmu_fa_short_inq_block_content() {
+  $fa_sh_id = variable_get('fa_sh_id');
+
+  $vars = array(
+    'fa_sh_id' => $fa_sh_id,
+  );
+  $content = theme('gmu_fa_short_inq_block', $vars);
+
+  return $content;
+}
+
+function gmu_fa_development_block_content() {
+  $fa_develop_id = variable_get('fa_develop_id');
+
+  $vars = array(
+    'fa_develop_id' => $fa_develop_id,
+  );
+  $content = theme('gmu_fa_development_block', $vars);
+
+  return $content;
+}
+
+function gmu_fa_msot_block_content() {
+  $fa_msot_id = variable_get('fa_msot_id');
+
+  $vars = array(
+    'fa_msot_id' => $fa_msot_id,
+  );
+  $content = theme('gmu_fa_msot_block', $vars);
+
+  return $content;
+}
+
+function gmu_fa_hybrid_block_content() {
+  $fa_hybrid_id = variable_get('fa_hybrid_id');
+
+  $vars = array(
+    'fa_hybrid_id' => $fa_hybrid_id,
+  );
+  $content = theme('gmu_fa_hybrid_block', $vars);
+
+  return $content;
+}
+
+function gmu_fa_mbaapp_block_content() {
+  $fa_mbaapp_id = variable_get('fa_mbaapp_id');
+
+  $vars = array(
+    'fa_mbaapp_id' => $fa_mbaapp_id,
+  );
+  $content = theme('gmu_fa_mbaapp_block', $vars);
+
+  return $content;
+}
+
+function gmu_fa_mph_block_content() {
+  $fa_mph_id = variable_get('fa_mph_id');
+
+  $vars = array(
+    'fa_mph_id' => $fa_mph_id,
+  );
+  $content = theme('gmu_fa_mph_block', $vars);
+
+  return $content;
+}
+
+function gmu_fa_mph_page_block_content() {
+  $fa_mph_page_id = variable_get('fa_mph_page_id');
+
+  $vars = array(
+    'fa_mph_page_id' => $fa_mph_page_id,
+  );
+  $content = theme('gmu_fa_mph_page_block', $vars);
+
+  return $content;
+}
